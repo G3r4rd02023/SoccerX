@@ -9,9 +9,14 @@ namespace SoccerX.Helpers
 {
     public interface IConverterHelper
     {
-        Team ToTeamEntity(TeamViewModel model, string path, bool isNew);
+        Team ToTeam(TeamViewModel model, string path, bool isNew);
 
-        TeamViewModel ToTeamViewModel(Team teamEntity);
+        TeamViewModel ToTeamViewModel(Team team);
+
+        Tournament ToTournament(TournamentViewModel model, string path, bool isNew);
+
+        TournamentViewModel ToTournamentViewModel(Tournament tournament);
+
 
     }
 }

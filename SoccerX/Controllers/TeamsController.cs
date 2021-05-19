@@ -72,10 +72,10 @@ namespace SoccerX.Controllers
 
                     if (model.LogoFile != null)
                     {
-                        path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                        path = await _imageHelper.UploadImageAsync(model.LogoFile, "teams");
                     }
 
-                    var team = _converterHelper.ToTeamEntity(model, path, true);
+                    var team = _converterHelper.ToTeam(model, path, true);
 
                     _context.Add(team);
                     await _context.SaveChangesAsync();
@@ -129,10 +129,10 @@ namespace SoccerX.Controllers
 
                     if (model.LogoFile != null)
                     {
-                        path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                        path = await _imageHelper.UploadImageAsync(model.LogoFile, "teams");
                     }
 
-                    Team team = _converterHelper.ToTeamEntity(model, path, false);
+                    Team team = _converterHelper.ToTeam(model, path, false);
                     _context.Update(team);
 
                     try

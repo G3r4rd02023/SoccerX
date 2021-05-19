@@ -26,6 +26,7 @@ namespace SoccerX
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddTransient<SeedDb>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddScoped<IImageHelper, ImageHelper>();
             services.AddControllersWithViews();
