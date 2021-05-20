@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
-
 <p>
-    <a asp-action="Create" class="btn btn-primary">Crear Equipo</a>
+    <a asp-action="Create" class="btn btn-primary"><i class=" fas fa-plus"></i></a>
 </p>
 <div class="row">
     <div class="col-md-12">
@@ -44,9 +44,9 @@
                                     }
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Ver Detalles</a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i>Eliminar</button>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         }
