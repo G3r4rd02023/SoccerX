@@ -50,10 +50,10 @@
     </div>
 </div>
 <div>
-    <a asp-action="EditGroup" asp-route-id="@Model.Id" class="btn btn-warning">Editar Grupo</a>
-    <a asp-action="AddGroupDetail" asp-route-id="@Model.Id" class="btn btn-primary">Agregar Equipo</a>
-    <a asp-action="AddMatch" asp-route-id="@Model.Id" class="btn btn-info">Agregar Partido</a>
-    <a asp-action="Details" asp-route-id="@Model.Tournament.Id" class="btn btn-success">Cancelar</a>
+    <a asp-action="EditGroup" asp-route-id="@Model.Id" class="btn btn-warning"><i class=" fas fa-edit"></i></a>
+    <a asp-action="AddGroupDetail" asp-route-id="@Model.Id" class="btn btn-primary"><i class=" fas fa-shield-alt"></i></a>
+    <a asp-action="AddMatch" asp-route-id="@Model.Id" class="btn btn-info"><i class=" fas fa-flag"></i></a>
+    <a asp-action="Details" asp-route-id="@Model.Tournament.Id" class="btn btn-success"><i class="fas fa-info-circle "></i></a>
 </div>
 <br />
 
@@ -143,8 +143,8 @@
                                         @Html.DisplayFor(modelItem => item.GoalDifference)
                                     </td>
                                     <td>
-                                        <a asp-action="EditGroupDetail" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i>Editar</a>
-                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i>Eliminar</button>
+                                        <a asp-action="EditGroupDetail" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                             }
@@ -220,9 +220,9 @@
                                         @Html.DisplayFor(modelItem => item.IsClosed)
                                     </td>
                                     <td>
-                                        <a asp-action="EditMatch" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i>Editar Partido</a>
-                                        <a asp-action="CloseMatch" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-check"></i>Cerrar Partido</a>
-                                        <button data-id="@item.Id" class="btn btn-danger deleteItemMath" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i>Eliminar Partido</button>
+                                        <a asp-action="EditMatch" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                        <a asp-action="CloseMatch" asp-route-id="@item.Id" class="btn btn-info"><i class="fas fa-check-circle "></i></a>
+                                        <button data-id="@item.Id" class="btn btn-danger deleteItemMath" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                             }

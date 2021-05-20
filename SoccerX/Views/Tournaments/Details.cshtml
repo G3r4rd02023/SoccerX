@@ -56,8 +56,8 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning"><i class=" fas fa-edit"></i></a>
-    <a asp-action="AddGroup" asp-route-id="@Model.Id" class="btn btn-primary">Agregar Grupo</a>
-    <a asp-action="Index" class="btn btn-success">Cancelar</a>
+    <a asp-action="AddGroup" asp-route-id="@Model.Id" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a asp-action="Index" class="btn btn-success"><i class=" fas fa-undo-alt"></i></a>
 </div>
 <br />
 <div class="row">
@@ -71,13 +71,13 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Name)
+                                Grupo
                             </th>
                             <th>
-                                # Teams
+                                # Equipos
                             </th>
                             <th>
-                                # Matches
+                                # Partidos
                             </th>
                             <th></th>
                         </tr>
@@ -96,9 +96,9 @@
                                     @Html.DisplayFor(modelItem => item.Matches.Count)
                                 </td>
                                 <td>
-                                    <a asp-action="EditGroup" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i>Editar Grupo</a>
-                                    <a asp-action="DetailsGroup" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon glyphicon-align-justify"></i>Ver Detalles</a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i>Eliminar Grupo</button>
+                                    <a asp-action="EditGroup" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <a asp-action="DetailsGroup" asp-route-id="@item.Id" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         }
