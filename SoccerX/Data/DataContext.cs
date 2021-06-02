@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SoccerX.Data.Entities;
 
 namespace SoccerX.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -14,6 +15,8 @@ namespace SoccerX.Data
         public DbSet<Group> Groups { get; set; }
 
         public DbSet<Match> Matches { get; set; }
+
+        public DbSet<Prediction> Predictions { get; set; }
 
         public DbSet<Team> Teams { get; set; }
 

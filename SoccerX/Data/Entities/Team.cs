@@ -19,5 +19,8 @@ namespace SoccerX.Data.Entities
         public string LogoPath { get; set; }
 
         public ICollection<GroupDetail> GroupDetails { get; set; }
+
+        public ICollection<User> Users { get; set; }
+
     }
 }

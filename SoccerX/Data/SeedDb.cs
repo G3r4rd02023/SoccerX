@@ -1,4 +1,6 @@
 ﻿using SoccerX.Data.Entities;
+using SoccerX.Enums;
+using SoccerX.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,96 @@ namespace SoccerX.Data
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            await CheckRolesAsync();
             await CheckTeamsAsync();
             await CheckTournamentsAsync();
+            await CheckUserAsync("0801198713256", "Gerardo", "Lanza", "glanza007@gmail.com", "3307 7964", "Tegucigalpa,FM", UserType.Admin);
+            await CheckUserAsync("0810199828920", "Odir", "Fernandez", "odirfer@yopmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("0801199023030", "Isabel", "Zambrano", "isabel@yopmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("0801199724040", "Miguel", "Herrera", "miguel2480@yopmailcom", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            await CheckPreditionsAsync();
         }
+
+        private async Task CheckPreditionsAsync()
+        {
+            if (!_context.Predictions.Any())
+            {
+                foreach (var user in _context.Users)
+                {
+                    if (user.UserType == UserType.User)
+                    {
+                        AddPrediction(user);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        private void AddPrediction(User user)
+        {
+            var random = new Random();
+            foreach (var match in _context.Matches)
+            {
+                _context.Predictions.Add(new Prediction
+                {
+                    GoalsLocal = random.Next(0, 5),
+                    GoalsVisitor = random.Next(0, 5),
+                    Match = match,
+                    User = user
+                });
+            }
+        }
+
+        private async Task<User> CheckUserAsync(
+            string document,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            string address,
+            UserType userType)
+        {
+            var user = await _userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    Team = _context.Teams.FirstOrDefault(),
+                    UserType = userType
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+
+            return user;
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
+
 
         private async Task CheckTeamsAsync()
         {
